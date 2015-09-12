@@ -1,8 +1,10 @@
 require("jsonlite")
 require("RCurl")
 ageDf <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from titanic where sex is not null"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDBF15DV.usuniversi01134.oraclecloud.internal', USER='cs329e_gv4353', PASS='orcl_gv4353', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+summary(ageDf)
+head(ageDf)
 
-#plot #6 sex, survival and age
+#plot #6 sex, survival, class and age
 ggplot() + 
   coord_cartesian() + 
   scale_x_discrete() +
