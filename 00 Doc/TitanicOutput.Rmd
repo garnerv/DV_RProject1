@@ -9,36 +9,52 @@ output:
 ---
 In its day, the Titanic was known as the 'unsinkable ship'. Unfortunately, it hit an iceberg and a lot of people died. This project is an attempt to visualize data about the passengers of the Titanic.
 
+Before generating plots, we run the source file to make sure the necessary packages are in place.
 ```{r}
-require("ggplot2") 
-require("ggthemes") 
-require("gplots") 
-require("grid") 
-require("RCurl") 
-require("reshape2") 
-require("rstudio") 
-require("tableplot") 
-require("tidyr") 
-require("dplyr") 
-require("jsonlite") 
-require("extrafont") 
-require("lubridate")
-nullDf <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from titanic"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDBF15DV.usuniversi01134.oraclecloud.internal', USER='cs329e_gv4353', PASS='orcl_gv4353', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_continuous() +
-  scale_y_continuous() +
-  labs(title='Titanic') +
-  labs(x="Age", y=paste("Fare")) +
-  layer(data=nullDf, 
-        mapping=aes(x=as.numeric(as.character(AGE)), y=as.numeric(as.character(FARE)), color=SEX), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        #position=position_identity()
-        position=position_jitter(width=0.3, height=0)
-  )
+source("../../DrCannata/.Rprofile")
 ```
 
-![](../plot1.jpeg)
+###Plot #1:
+This visualization uses a fairly general SQL statement. Everything from the database is pulled into the data frame. The visualization produced shows who was on the Titanic, by fare and sex. 
+```{r}
+source("../02 Visualizations/plot1.R", echo = TRUE)
+```
+
+
+**Code Analysis**
+
+In this code, there is "junk data" in the summary present in the null data points. Warnings are produced because of NULL data rows. Both fare and age are identified as continuous variables.
+
+**Plot Analysis**
+
+In this plot, we see that most people on the ship who paid over $200 for their ticket were female. Additionally, we see that the majority of the passengers on the ship paid less than $100 for their ticket.
+
+###Plot #2:
+This visualization uses an SQL statement that does not select any data that has "NULL" in its "SEX" slot. This will avoid receiving warning messages and seeing junk data in the summary. This visualization shows who was on the Titanic by fare and sex.
+```{r}
+source("../02 Visualizations/plot2.R", echo = TRUE)
+```
+
+
+**Code Analysis**
+
+The difference between this plot and plot #1 is that we do not see junk "NULL" data.
+
+**Plot Analysis**
+
+In this plot, the legend is clearer and the unneccessary "NULL" marker is not present in the plot. We see, as in the first plot, that the majority of the passengers paid less than $100 for their Titanic tickets.
+
+###Plot #3:
+This visualization uses the same dataframe as plot #2. The plot visualizes survival by sex.
+```{r}
+source("../02 Visualizations/plot3.R", echo = TRUE)
+```
+
+
+**Code Analysis**
+
+Survival is identified as a discrete variable. The legend differentiates survival; a 1 indicates survival and a 0 indicates death.
+
+**Plot Analysis**
+
+This visualization shows that many more females survived the Titanic crash than males. This could have been because the people on the ship wanted to get women and children off of the boat before the men. Additionally, we see that the three people that paid over $500 for their Titanic tickets all survived. No females that paid more than $200 died as a result of the Titanic crash.
