@@ -11,13 +11,13 @@ In its day, the Titanic was known as the 'unsinkable ship'. Unfortunately, it hi
 
 Before generating plots, we run the source file to make sure the necessary packages are in place.
 ```{r}
-source("../../DrCannata/.Rprofile")
+source("../require.R")
 ```
 
 ###Summary and Subset:
-
-```{r}
-source("../01 Data/Summary.R")
+The SQL used to subset this data cuts out the NULL data points, which are not useful for analysis. 
+```{r, echo=TRUE}
+source("../01 Data/Summary.R", echo = TRUE)
 ```
 
 ###Plot #1:
