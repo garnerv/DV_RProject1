@@ -1,33 +1,18 @@
----
-title: "Project 1: Titanic Analysis"
-output:
-  html_document:
-    pandoc_args: [
-      "+RTS", "-K64m",
-      "-RTS"
-    ]
----
-In its day, the Titanic was known as the 'unsinkable ship'. Unfortunately, it hit an iceberg and a lot of people died. This project is an attempt to visualize data about the passengers of the Titanic.
-
-```{r}
-require("ggplot2") 
-require("ggthemes") 
-require("gplots") 
-require("grid") 
-require("RCurl") 
-require("reshape2") 
-require("rstudio") 
-require("tableplot") 
-require("tidyr") 
-require("dplyr") 
-require("jsonlite") 
-require("extrafont") 
-require("lubridate")
+require("jsonlite")
+require("RCurl")
+# Change the USER and PASS below to be your UTEid
 nullDf <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from titanic"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521/PDBF15DV.usuniversi01134.oraclecloud.internal', USER='cs329e_gv4353', PASS='orcl_gv4353', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE), ))
+
+
+require(extrafont)
+#plot 1 with null data
 ggplot() + 
   coord_cartesian() + 
   scale_x_continuous() +
   scale_y_continuous() +
+  #facet_wrap(~SURVIVED) +
+  #facet_grid(.~SURVIVED, labeller=label_both) + # Same as facet_wrap but with a label.
+  #facet_grid(PCLASS~SURVIVED, labeller=label_both) +
   labs(title='Titanic') +
   labs(x="Age", y=paste("Fare")) +
   layer(data=nullDf, 
@@ -39,6 +24,3 @@ ggplot() +
         #position=position_identity()
         position=position_jitter(width=0.3, height=0)
   )
-```
-
-![](../plot1.jpeg)
