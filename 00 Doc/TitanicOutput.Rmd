@@ -14,6 +14,12 @@ Before generating plots, we run the source file to make sure the necessary packa
 source("../../DrCannata/.Rprofile")
 ```
 
+###Summary and Subset:
+
+```{r}
+source("../01 Data/Summary.R")
+```
+
 ###Plot #1:
 This visualization uses a fairly general SQL statement. Everything from the database is pulled into the data frame. The visualization produced shows who was on the Titanic, by fare and sex. 
 ```{r}
@@ -58,3 +64,48 @@ Survival is identified as a discrete variable. The legend differentiates surviva
 **Plot Analysis**
 
 This visualization shows that many more females survived the Titanic crash than males. This could have been because the people on the ship wanted to get women and children off of the boat before the men. Additionally, we see that the three people that paid over $500 for their Titanic tickets all survived. No females that paid more than $200 died as a result of the Titanic crash.
+
+###Plot #4:
+This visualization uses the same dataframe as plot #2 and #3. The plot visualizes survival by sex divided by class
+```{r}
+source("../02 Visualizations/plot4.R", echo = TRUE)
+```
+
+
+**Code Analysis**
+
+Like in plot 3, survival is identified as a discrete variable. The legend differentiates survival; a 1 indicates survival and a 0 indicates death. New with this plot is differentiating between class.
+
+**Plot Analysis**
+
+This visualization adds the new dimension of class. It shows an interesting correlation between how much some paid to ride and what class they were put in.  There were some men who paid nothing and were in first class who did not survive. It may be that they were captain and crew since the captain should always go down with his ship.  It also shows that anyone who rode for free did not survive and that there were several who paid more to ride 3rd class than those who rode 1st class.
+
+###Plot #5:
+This visualization uses a dataframe of those who rode that were no more than 10 years old.  The plot visualizes survival by sex divided by class
+```{r}
+source("../02 Visualizations/plot5.R", echo = TRUE)
+```
+
+
+**Code Analysis**
+
+Like in plot 3, survival is identified as a discrete variable. The legend differentiates survival; a 1 indicates survival and a 0 indicates death. This plot is differentiating between class like in plot 4.
+
+**Plot Analysis**
+
+This shows a sad piece of data.  It shows those who died or survived under the age of 10.  It is interesting how much more expensive first class kids were to ride, nearly double that of any child in 2nd or 3rd class.  There were less kids in first class but all male kids in first class survive, demostrating the importance of family lines for the rich.
+
+###Plot #6:
+This visualization uses the same dataframe as plot #3.  The plot visualizes survival by sex divided by class but with age on the vertical axis instead of fare.
+```{r}
+source("../02 Visualizations/plot6.R", echo = TRUE)
+```
+
+
+**Code Analysis**
+
+Like in plot 3, survival is identified as a discrete variable. The legend differentiates survival; a 1 indicates survival and a 0 indicates death. This plot is differentiating between class like in plot 4 and 5 but instead of compared to fare it is compared to age.
+
+**Plot Analysis**
+
+This visualization not only shows who survived by age but also who rode.  There is a large number of 20 something males in 3rd class probably for below deck work, most of which did not survive.  It also shows how childeren in 2nd class mostly survived while plenty in 3rd class did not.  It also shows that the eldest passengers were in first class.
