@@ -9,6 +9,13 @@ output:
 ---
 In its day, the Titanic was known as the 'unsinkable ship'. Unfortunately, it hit an iceberg and a lot of people died. This project is an attempt to visualize data about the passengers of the Titanic.
 
+###Reproducing Our Work:
+1. Create a GitHub repository for the project.
+2. Create the folders for your project.
+3. Copy the SQL file into your SQL developer and run it.
+4. Make the plots you need from the dataframe, isolating appropriate data using SQL including a unique visualization.
+5. Build an html file to document these steps.
+
 Before generating plots, we run the source file to make sure the necessary packages are in place.
 ```{r}
 source("../require.R")
